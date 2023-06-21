@@ -41,7 +41,6 @@ void UTriggerAchievementEntry::OnAchievementComplete(FName AchievementId,const F
 {
 	if (AchivId.IsEqual(AchievementId))
 	{
-		SetVisibility(ESlateVisibility::Visible);
 		AchievementImage->SetBrushFromTexture(AchievementData.AchievedIcon);
 		AchievementCompleted->SetCheckedState(ECheckBoxState::Checked);
 	}

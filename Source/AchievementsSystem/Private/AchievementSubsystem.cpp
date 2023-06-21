@@ -45,6 +45,11 @@ void UAchievementSubsystem::CompleteAchievement(FName Id)
 		if (AchievementDataTable)
 		{
 			OnAchievementUnlock.Broadcast(Id,*AchievementDataTable->FindRow<FAchievementData>(Id,FString()));
+			USoundBase* NotifySound = Cast<USoundBase>(AchievementSettings->NotifySound.TryLoad());
+			if (AchievementSettings && NotifySound)
+			{
+				UGameplayStatics::PlaySound2D(this, NotifySound);
+			}
 		}
 		UGameplayStatics::SaveGameToSlot(AchievementSaveGame, AchievementSettings->LoadGameFromSaveGameSlot, 0);
 	}
